@@ -19425,10 +19425,12 @@ data = """Year of Birth,Gender,Ethnicity,Child's First Name,Count,Rank
 # Split the data into rows
 rows = data.split('\n')
 
-# Open a CSV file for writing
-with open('Popular_Baby_Names.csv', 'w', newline='') as file:
-    writer = csv.writer(file)
+# Open a CSV file for writing with tab delimiter
+with open('Popular_Baby_Names_Tab_Delimited.csv', 'w', newline='') as file:
+    writer = csv.writer(file, delimiter='\t')
     for row in rows:
-        writer.writerow(row.split(','))
+        # Skip empty rows
+        if row.strip():
+            writer.writerow(row.split(','))
 
 print("Data written to Popular_Baby_Names.csv successfully.")
